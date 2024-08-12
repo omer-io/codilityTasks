@@ -1,17 +1,19 @@
 // Tape Equilibrium
 #include <iostream>
+#include <vector>
 using namespace std;
 
 class Solution{
     public:
-        int solution(int A[]){
+        int solution(vector<int> &A){
             int P, minDiff = 0, diff = 0;
-            for(P = 1; P < 5; P++){
+            int n = A.size();
+            for(P = 1; P < n; P++){
                 int lCount = P, rCount = P, leftSum = 0, rightSum = 0;
                 while(lCount != 0)
                     leftSum += A[--lCount];
                 
-                while(rCount != 5)
+                while(rCount != n)
                     rightSum += A[rCount++];
                 
                 if(P == 1)
@@ -26,8 +28,8 @@ class Solution{
 };
 
 int main(){
-    int arr[5] = {3,1,2,4,3};
+    vector<int> arr = {3,1,2,4,3};
     Solution tapeEq;
-    cout << tapeEq.solution(arr) << endl;
+    cout << "Minimum difference is " << tapeEq.solution(arr) << endl;
     return 0;
 }
