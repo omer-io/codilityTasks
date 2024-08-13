@@ -2,6 +2,7 @@
 #include <iostream>
 #include <vector>
 #include <climits>
+#include <algorithm>
 using namespace std;
 
 int solution(vector<int> &A){
