@@ -5,28 +5,22 @@
 using namespace std;
 
 int solution(vector<int> &A){
+    if(A.empty())
+        return -1;
     int n = A.size();
-    int maxCount = 0, index;
-    for(int i = 0; i < n; i++){
+    for(int i = 0; i < n/2 + 1; i++){
         int count = 0;
         for(int j = 0; j < n; j++){
             if(A[i] == A[j]){
-                count++;
+                if(++count > n/2)
+                    return i;
             }
         }
-        if(count > maxCount){
-            maxCount = count;
-            index = i;
-        }
     }
-    if(maxCount > n/2)
-    return index;
-    else
     return -1;
-
 }
 
 int main(){
-    vector<int> A = {1,3,3, 4, 3, 2, 3, -1, 3, 3};
+    vector<int> A = {1,2,1};
     cout << solution(A) << endl;
 }
