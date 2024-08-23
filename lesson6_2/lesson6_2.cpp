@@ -24,7 +24,6 @@ int solution(vector<int> &A){
     int j = 0;
     for (int i = 0; i < n; i++) {
         while (j < n && upper[i] >= lower[j]) {
-            cout << upper[i] << ".\n";
             discIntersect += j-i;
             j++;
 
@@ -32,7 +31,6 @@ int solution(vector<int> &A){
                 return -1;
             }
         }
-        cout << discIntersect << endl;
     }
     return discIntersect;
     // for(int i = 0; i < n-1; i++){
