@@ -1,5 +1,5 @@
 // NumberOfDiscIntersections
-// Correctness 100 Performance 100
+// Correctness 100 Performance 
 
 #include <iostream>
 #include <vector>

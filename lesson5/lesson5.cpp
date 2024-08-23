@@ -8,29 +8,16 @@ using namespace std;
 vector<int> solution(string &S, vector<int> &P, vector<int> &Q){
     vector<int> result;
     map<char, int> dnaMap;
-    dnaMap['A'] = 1;
-    dnaMap['C'] = 1;
-    dnaMap['G'] = 1;
-    dnaMap['T'] = 1;
+    const int n =P.size();
 
-    for(int j = 0; j < P.size(); j++){
-        int minImpact = 4;
-       // int currImpact = 0;
-       vector<int> sorted;
-        for(int i = P[j]; i <= Q[j]; i++){
-            
-            if(S[i] == 'A'){    
-                minImpact = 1;
-            }
-            else if(S[i] == 'C'){
-                minImpact = 2;
-            }
-            else if(S[i] == 'G'){
-                minImpact = 3;
-            }
-        }
-        result.push_back(minImpact);
-    }
+    dnaMap['A'] = 1;
+    dnaMap['C'] = 2;
+    dnaMap['G'] = 3;
+    dnaMap['T'] = 4;
+
+    for(int j = 0; j < n; j++)
+        result.push_back(dnaMap[*min_element(S.begin() + P[j],S.begin() + Q[j]+1)]);
+
     return result;
 }
 
