@@ -10,12 +10,12 @@ using namespace std;
 int solution(vector<int> &A){
     int n = A.size(), discIntersect = 0;
 
-    vector<long long> lower(n);  
-    vector<long long> upper(n);  
+    vector<long int> lower(n);  
+    vector<long int> upper(n);  
 
     for (int i = 0; i < n; i++) {
-        lower[i] = (long long)i - A[i];
-        upper[i] = (long long)i + A[i];
+        lower[i] = static_cast<long int>(i) - static_cast<long int>(A[i]);
+        upper[i] = static_cast<long int>(i) + static_cast<long int>(A[i]);
     }
 
     sort(lower.begin(), lower.end());
