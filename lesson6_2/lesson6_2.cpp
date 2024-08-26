@@ -14,16 +14,20 @@ int solution(vector<int> &A){
     vector<long int> upper(n);  
 
     for (int i = 0; i < n; i++) {
+        // lower array stores left endpoints of discs
         lower[i] = static_cast<long int>(i) - static_cast<long int>(A[i]);
+                // lower array stores left endpoints of discs
         upper[i] = static_cast<long int>(i) + static_cast<long int>(A[i]);
     }
 
+    // sort lower and upper arrays
     sort(lower.begin(), lower.end());
     sort(upper.begin(), upper.end());
 
     int j = 0;
     for (int i = 0; i < n; i++) {
         while (j < n && upper[i] >= lower[j]) {
+            // subtract previously counted intersections
             discIntersect += j-i;
             j++;
 
@@ -33,16 +37,6 @@ int solution(vector<int> &A){
         }
     }
     return discIntersect;
-    // for(int i = 0; i < n-1; i++){
-    //     for(int j = i+1; j < n; j++){
-    //         if(static_cast<long int>(A[i]) + static_cast<long int>(A[j]) >= abs(i - j)){
-    //             discIntersect+=1;
-    //         }
-    //     }
-    //     if(discIntersect > 10000000)
-    //         return -1;
-    // }
-    // return discIntersect;
 }
 
 int main(){
