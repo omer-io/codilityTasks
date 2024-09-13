@@ -4,7 +4,7 @@
 #include <iostream>
 #include <vector>
 #include<algorithm>
-#include <map>
+#include <unordered_map>
 using namespace std;
 
 vector<int> solution(vector<int> &A){
@@ -14,21 +14,68 @@ vector<int> solution(vector<int> &A){
     vector<int> temp = A;
     sort(temp.begin(), temp.end());
 
-    map<int, int> indextoVal;
+    unordered_map<int, int> indextoVal;
     for(int i = 0; i < n; i++) {
         indextoVal[temp[i]] = i;
     }
 
+    int count;
     for(int i = 0; i < n; i++){
-        int count = 0;
-        for(int j = 0; j < indextoVal[A[i]]; j++){
-            if(A[i] % temp[j] != 0){
+        count = 0;
+        for(int j = i-1; j >= 0; j--){
+            if(temp[i] == temp[j]){
+                continue;
+            }
+            if(temp[i] % temp[j] != 0){
                 ++count;
             }
         }
-        count += (temp.size() -1 - indextoVal[A[i]]); 
+        count += (n - i - 1); 
         result.push_back(count);
     }
+
+
+    // int count;
+    // for(int i = 0; i < n; i++){
+    //     count = 0;
+    //     for(int j = 0; j < indextoVal[A[i]]; j++){
+    //         if(A[i] % temp[j] != 0){
+    //             ++count;
+    //         }
+    //     }
+    //     count += (n -1 - indextoVal[A[i]]); 
+    //     result.push_back(count);
+    // }
+
+
+//    int count;
+//     for(int i = 0; i < n; i++){
+//         count = 0;
+//         for(int j = 0; j < n; j++){
+//             if(A[i] % temp[j] != 0){
+//                 ++count;
+//             }
+//             else if(A[i] < temp[j]){
+//                 count++;
+//             }
+//         }
+//         //count += (n -1 - indextoVal[A[i]]); 
+//         result.push_back(count);
+    // }
+
+
+
+    // int count;
+    // for(int i = 0; i < n; i++){
+    //     count = 0;
+    //     for(int j = 0; j < indextoVal[A[i]]; j++){
+    //         if(A[i] % temp[j] != 0){
+    //             ++count;
+    //         }
+    //     }
+    //     count += (n -1 - indextoVal[A[i]]); 
+    //     result.push_back(count);
+    // }
 
     return result;
 }

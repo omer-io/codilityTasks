@@ -23,17 +23,8 @@ int solution(vector<int> &A){
     if (numPeaks == 0) 
         return 0;
 
-    // int flags = 4;
-    // for(int j = 0; j < numPeaks - 1; j++){
-    //     for(int k = j + 1; k < numPeaks; k++){
-    //         if(abs(peaks[j] - peaks[k] <= flags)){
-    //             --flags;
-    //             continue;
-    //         }
-    //         j = k;
-    //     }
-    // }
-    // return flags;
+    int usedFlags;  // Place the first flag
+    int lastFlagPosition;
     for (int flags = numPeaks; flags >= 1; --flags) {
         int usedFlags = 1;  // Place the first flag
         int lastFlagPosition = peaks[0];
@@ -49,6 +40,18 @@ int solution(vector<int> &A){
         }
     }
     return 1;
+
+        // int flags = numPeaks;
+    // for(int j = 0; j < numPeaks - 1; j++){
+    //     for(int k = j + 1; k < numPeaks; k++){
+    //         if(abs(peaks[j] - peaks[k] <= flags)){
+    //             --flags;
+    //             continue;
+    //         }
+    //         j = k;
+    //     }
+    // }
+    // return flags;
 }
 
 int main(){

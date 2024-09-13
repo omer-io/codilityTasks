@@ -22,15 +22,38 @@ int solution(vector<int> &A){
     if (numPeaks == 0) 
         return 0;
 
-    int maxBlocks = 1;
-    for(int i = 1; i < n; i++){
-        if(n % i == 0){
-            int numBlocks = n/i;
-            for(int j = 0; j < numBlocks; j++){
-
+    for(int numOfBlocks = numPeaks; numOfBlocks >=1; numOfBlocks--){
+        if(n % numOfBlocks == 0){
+            int blockSize = n / numOfBlocks;
+            int peakCount = 0;
+            int currentBlock = 1;
+            for(int i = 0; i < numOfBlocks; i++){
+                for(int j = blockSize * (currentBlock - 1); j < blockSize * currentBlock; j++){
+                    for(int peak : peaks){
+                        if(A[j] == peak){
+                            ++peakCount;
+                            break;
+                        }
+                    }
+                    ++currentBlock;
+                }
+            }
+            if(peakCount == numOfBlocks){
+                return numOfBlocks;
             }
         }
     }
+
+
+    // int maxBlocks = 1;
+    // for(int i = 1; i < n; i++){
+    //     if(n % i == 0){
+    //         int numBlocks = n/i;
+    //         for(int j = 0; j < numBlocks; j++){
+
+    //         }
+    //     }
+    // }
     // for (int K = numPeaks; K >= 1; K--) {
     //     if (n % K == 0) { 
     //         int blockSize = n / K;

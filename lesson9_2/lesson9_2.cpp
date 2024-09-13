@@ -11,21 +11,41 @@ int solution(vector<int> &A){
 
     int n = A.size();
     int maxSum=0;
+    int currMax;
+    int currMaxRight=0;
+    int currMaxLeft=0;
     for(int i = 0; i < n-2; i++){
         for(int j = i + 1; j < n-1; j++){
-            for(int k = j + 1; k < n; k++){
-                float sum = 0;
-                for(int s = i+1; s < k; s++){
-                    sum += A[s];
-                }
-                sum -= A[j];
-                if(sum > maxSum){
-                    maxSum = sum;
-                }
+            currMaxRight = max(A[j], currMaxRight + A[j]);
+            // maxSum = max(maxSum, currMax);
+            for(int k = j + 1; j < n; j++){
+                currMaxLeft = max(A[k], currMaxLeft + A[k]);
+                // maxSum = max(maxSum, currMax);
             }
         }
+        currMax = currMaxRight + currMaxLeft;
+        maxSum = max(maxSum, currMax);
     }
     return maxSum;
+    
+    // int n = A.size();
+    // int maxSum=0;
+    // int sum;
+    // for(int i = 0; i < n-2; i++){
+    //     for(int j = i + 1; j < n-1; j++){
+    //         for(int k = j + 1; k < n; k++){
+    //             sum = 0;
+    //             for(int s = i+1; s < k; s++){
+    //                 sum += A[s];
+    //             }
+    //             sum -= A[j];
+    //             if(sum > maxSum){
+    //                 maxSum = sum;
+    //             }
+    //         }
+    //     }
+    // }
+    // return maxSum;
 }
 
 int main(){
