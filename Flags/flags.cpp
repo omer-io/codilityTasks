@@ -8,11 +8,11 @@ using namespace std;
 
 int solution(vector<int> &A){
     int n = A.size();
-    vector<int> peaks;
     
     if(A.size() < 3)
         return 0;
 
+    vector<int> peaks;
     for(int i = 1; i < n-1; i++){
         if(A[i] > A[i-1] && A[i] > A[i+1]){
             peaks.push_back(i);
@@ -23,11 +23,11 @@ int solution(vector<int> &A){
     if (numPeaks == 0) 
         return 0;
 
-    int usedFlags;  // Place the first flag
+    int usedFlags;  
     int lastFlagPosition;
     for (int flags = numPeaks; flags >= 1; --flags) {
-        int usedFlags = 1;  // Place the first flag
-        int lastFlagPosition = peaks[0];
+        usedFlags = 1;  // Place the first flag
+        lastFlagPosition = peaks[0];
 
         for (int i = 1; i < numPeaks; ++i) {
             if (peaks[i] - lastFlagPosition >= flags) {
