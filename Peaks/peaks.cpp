@@ -3,8 +3,6 @@
 
 #include <iostream>
 #include <vector>
-#include <climits>
-#include <algorithm>
 using namespace std;
 
 int solution(vector<int> &A){
@@ -33,12 +31,13 @@ int solution(vector<int> &A){
             for(int currentBlock = 0; currentBlock < numOfBlocks; currentBlock++){
                 blockStart = blockSize * currentBlock;
                 blockEnd = blockSize * (currentBlock + 1);
-                for(int peak : peaks){
-                    if(peak >= blockStart && peak < blockEnd){
+                for(int peak = currentBlock; peak < numPeaks; peak++){
+                    if(peaks[peak] >= blockStart && peaks[peak] < blockEnd){
                         ++peakCount;
                         break;
                     }
                 }
+
                 // for(int j = blockSize * currentBlock; j < blockSize * (currentBlock + 1); j++){
                 //     for(int k = 0; k < numPeaks; k++){
                 //         if(j == peaks[k]){

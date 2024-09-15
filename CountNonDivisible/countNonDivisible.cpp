@@ -22,17 +22,29 @@ vector<int> solution(vector<int> &A){
     int count;
     for(int i = 0; i < n; i++){
         count = 0;
-        for(int j = i-1; j >= 0; j--){
-            if(temp[i] == temp[j]){
-                continue;
-            }
-            if(temp[i] % temp[j] != 0){
+        for(int j = 0; j < indextoVal[A[i]]; j++){
+            if(A[i] % temp[j] != 0){
                 ++count;
             }
         }
-        count += (n - i - 1); 
+        count += (n -1 - indextoVal[A[i]]); 
         result.push_back(count);
     }
+
+    // int count;
+    // for(int i = 0; i < n; i++){
+    //     count = 0;
+    //     for(int j = i-1; j >= 0; j--){
+    //         if(temp[i] == temp[j]){
+    //             continue;
+    //         }
+    //         if(temp[i] % temp[j] != 0){
+    //             ++count;
+    //         }
+    //     }
+    //     count += (n - i - 1); 
+    //     result.push_back(count);
+    // }
 
 
     // int count;
@@ -65,17 +77,7 @@ vector<int> solution(vector<int> &A){
 
 
 
-    // int count;
-    // for(int i = 0; i < n; i++){
-    //     count = 0;
-    //     for(int j = 0; j < indextoVal[A[i]]; j++){
-    //         if(A[i] % temp[j] != 0){
-    //             ++count;
-    //         }
-    //     }
-    //     count += (n -1 - indextoVal[A[i]]); 
-    //     result.push_back(count);
-    // }
+
 
     return result;
 }
