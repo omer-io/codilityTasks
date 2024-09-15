@@ -36,6 +36,7 @@ int solution(vector<int> &A){
                 if (usedFlags == flags) {  
                     return flags;
                 }
+
             }
         }
     }

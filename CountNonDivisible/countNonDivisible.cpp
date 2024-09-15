@@ -31,6 +31,19 @@ vector<int> solution(vector<int> &A){
         result.push_back(count);
     }
 
+
+    // int count;
+    // for(int i = 0; i < n; i++){
+    //     count = greaterElements[A[i]];
+    //     for(int j = 0; j < indextoVal[A[i]]; j++){
+    //         if(A[i] % temp[j] != 0){
+    //             ++count;
+    //         }
+    //     }
+    //     // count += (n -1 - indextoVal[A[i]]); 
+    //     result.push_back(count);
+    // }
+
     // int count;
     // for(int i = 0; i < n; i++){
     //     count = 0;
