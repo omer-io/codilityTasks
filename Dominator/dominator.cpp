@@ -1,5 +1,4 @@
 // Dominator
-// Correctness 100 Performance 100
 
 #include <iostream>
 #include <algorithm>
@@ -7,30 +6,30 @@
 #include <map>
 using namespace std;
 
-int solution(vector<int> &A){
-    if(A.empty())
+int solution(vector<int> &array){
+    if(array.empty())
         return -1;
 
-    int n = A.size();
+    int arraySize = array.size();
     map<int, int> indexToVal;
     // map values to respective index
-    for(int a = 0; a < n; a++)
-        indexToVal[A[a]] = a;
+    for(int a = 0; a < arraySize; a++)
+        indexToVal[array[a]] = a;
 
-    sort(A.begin(), A.end());
+    sort(array.begin(), array.end());
     // if domniator exists, it must be in middle
-    int dominator = A[n/2];
+    int dominator = array[arraySize/2];
 
     int count = 0;
-    for(int i = 0; i < n; i++){
-        if(A[i] == dominator)
-            if(++count > n/2)
-                return indexToVal[A[i]];
+    for(int index = 0; index < arraySize; index++){
+        if(array[index] == dominator)
+            if(++count > arraySize/2)
+                return indexToVal[array[index]];
     }
     return -1;
 }
 
 int main(){
-    vector<int> A = {2,1,1,1,3};
-    cout << solution(A) << endl;
+    vector<int> array = {2,1,1,1,3};
+    cout << solution(array) << endl;
 }

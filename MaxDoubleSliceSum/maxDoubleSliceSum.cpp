@@ -1,25 +1,29 @@
 // MaxDoubleSliceSum
-// Correctness 100
 
 #include <iostream>
 #include <vector>
-#include <climits>
-#include <algorithm>
 using namespace std;
 
-int solution(vector<int> &A){
+int solution(vector<int> &array){
 
-    int n = A.size();
-    int maxSum=0;
+    int arraySize = array.size();
+    int maxSum = 0;
     int sum;
-    for(int i = 0; i < n-2; i++){
-        for(int j = i + 1; j < n-1; j++){
-            for(int k = j + 1; k < n; k++){
+
+    // outer loop for starting index of slice
+    for(int startIndex = 0; startIndex < arraySize - 2; startIndex++){
+        // middle loop for middle index of slice
+        for(int midIndex = startIndex + 1; midIndex < arraySize - 1; midIndex++){
+            // loop for ending index of slice
+            for(int endIndex = midIndex + 1; endIndex < arraySize; endIndex++){
                 sum = 0;
-                for(int s = i+1; s < k; s++){
-                    sum += A[s];
+                // loop to calculate sum of slice
+                for(int sliceIndex = startIndex + 1; sliceIndex < endIndex; sliceIndex++){
+                    sum += array[sliceIndex];
                 }
-                sum -= A[j];
+                // subtract value at mid index
+                sum -= array[midIndex];
+                // assign sum to maxSum if its greater
                 if(sum > maxSum){
                     maxSum = sum;
                 }
@@ -27,23 +31,9 @@ int solution(vector<int> &A){
         }
     }
     return maxSum;
-
-    // int n = A.size();
-    // int maxSum=0;
-    // int currMax;
-    // int currMaxRight=0;
-    // int currMaxLeft=0;
-    // for(int i = 0; i < n-2; i++){
-    //     currMax = max(A[i], currMax + A[i]);
-    //     maxSum = max(maxSum, currMax);
-    // }
-    // return maxSum;
-    
-
 }
 
 int main(){
-    //vector<int> A = {5,5,5};
-    vector<int> A = {3,2,6,-1,4,5,-1,2};
-    cout << solution(A) << endl;
+    vector<int> array = {3,2,6,-1,4,5,-1,2};
+    cout << solution(array) << endl;
 }

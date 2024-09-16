@@ -1,21 +1,19 @@
 // Equileader
-// Correctness 100 Performance 100
 
 #include <iostream>
-#include <algorithm>
 #include <vector>
 #include <map>
 using namespace std;
 
-int solution(vector<int> &A){
+int solution(vector<int> &array){
 
-    int n = A.size();
+    int arraySize = array.size();
     int equiLeaders = 0;
     map<int, int> countMap;
 
     // Count each element occurence
-    for (int i = 0; i < n; i++) {
-        countMap[A[i]]++;
+    for (int index = 0; index < arraySize; index++) {
+        countMap[array[index]]++;
     }
 
     int leader, leaderCount = 0;
@@ -23,7 +21,7 @@ int solution(vector<int> &A){
     map<int, int>::iterator it = countMap.begin();
     // find leader of complete vector
     while(it != countMap.end()){
-        if (it->second > n / 2) {
+        if (it->second > arraySize / 2) {
             leader = it->first;
             leaderCount = it->second;
             break;
@@ -32,59 +30,25 @@ int solution(vector<int> &A){
     }
 
     int leftCount = 0;
-    int rightCount = leaderCount;
+    int rightCount = leaderCount; // initialze rightCount with total leader counts
 
-    for (int S = 0; S < n - 1; S++) {
-        if (A[S] == leader) {
+    for (int index = 0; index < arraySize - 1; index++) {
+        // at each index check if leader exists, then add one to left leader counts and reduce one from right counts
+        if (array[index] == leader) {
             leftCount++;
             rightCount--;
         }
-
-        if (leftCount > (S + 1) / 2 && rightCount > (n - S - 1) / 2) {
+        // check if leader counts in boths sides left and right are greater than half of their side
+        if (leftCount > (index + 1) / 2 && rightCount > (arraySize - index - 1) / 2) {
             equiLeaders++;
         }
     }
 
     return equiLeaders;
 
-    // int n = A.size();
-    // int equiLeaders = 0;
-
-    // for (int S = 0; S < n - 1; S++) {
-
-    //     vector<int> leftVector(A.begin(), A.begin() + S + 1);
-    //     sort(leftVector.begin(), leftVector.end());
-
-    //     int leftLeader = leftVector[leftVector.size() / 2];
-
-    //     int leftCount = 0;
-    //     for (int i = 0; i <= S; i++) {
-    //         if (A[i] == leftLeader) {
-    //             leftCount++;
-    //         }
-    //     }
-
-    //     vector<int> rightVector(A.begin() + S + 1, A.end());
-    //     sort(rightVector.begin(), rightVector.end());
-
-    //     int rightLeader = rightVector[rightVector.size() / 2];
-
-    //     int rightCount = 0;
-    //     for (int i = S + 1; i < n; i++) {
-    //         if (A[i] == rightLeader) {
-    //             rightCount++;
-    //         }
-    //     }
-
-    //     if (leftCount > (S + 1) / 2 && rightCount > (n - S - 1) / 2 && leftLeader == rightLeader) {
-    //         ++equiLeaders;
-    //     }
-    // }
-
-    // return equiLeaders;
 }
 
 int main(){
-    vector<int> A = {-1,-1,-1};
-    cout << solution(A) << endl;
+    vector<int> array = {-1,-1,-1};
+    cout << solution(array) << endl;
 }

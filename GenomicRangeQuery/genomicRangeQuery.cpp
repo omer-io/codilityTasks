@@ -1,74 +1,63 @@
 // GenomicRangeQuery
 #include <iostream>
 #include <vector>
-#include <map>
-#include <algorithm>
 using namespace std;
 
-vector<int> solution(string &S, vector<int> &P, vector<int> &Q){
-    vector<int> result;
+vector<int> solution(string &DNAsequence, vector<int> &queryStart, vector<int> &queryEnd){
+    vector<int> result; // iniitalze result vector
 
-    int n = S.size();
-    vector<int> A(n, 0);
-    vector<int> C(n, 0);
-    vector<int> G(n, 0);
+    int arraySize = DNAsequence.size();
+    // intialize nucleotides A, C, G vectors with 0s
+    vector<int> A(arraySize, 0);
+    vector<int> C(arraySize, 0);
+    vector<int> G(arraySize, 0);
     
-    const int p =P.size();
-
-    for(int j = 0; j < n; j++){
-        if(S[j] == 'A')
-            A[j] = 1;
-        else if(S[j] == 'C')
-            C[j] = 2;
-        else if(S[j] == 'G')
-            G[j] = 3;
+    // Iterate over DNA string and put respective impact factor at that index
+    for(int index = 0; index < arraySize; index++){
+        if(DNAsequence[index] == 'A')
+            A[index] = 1;
+        else if(DNAsequence[index] == 'C')
+            C[index] = 2;
+        else if(DNAsequence[index] == 'G')
+            G[index] = 3;
     }
 
-    int factor;
-    for(int i = 0; i < p; i++){
-        factor = 4;
-        for(int k = P[i]; k <= Q[i]; k++){
+    int totalQueries = queryStart.size();
+    int impactFactor;
+
+    // loop to iterate for total number of queries
+    for(int index = 0; index < totalQueries; index++){
+        impactFactor = 4;
+        // loop over subarray defined by query
+        for(int k = queryStart[index]; k <= queryEnd[index]; k++){
             if(A[k] == 1){
-                if(factor > 1){
-                    factor = 1;
+                if(impactFactor > 1){
+                    impactFactor = 1;
                 }
-                break;
+                break; // break if 1 found as its the lowest impact factor
             }
             else if(C[k] == 2){
-                if(factor > 2){
-                    factor = 2;
+                if(impactFactor > 2){
+                    impactFactor = 2;
                 }
             }
             else if(G[k] == 3){
-                if(factor > 3){
-                    factor = 3;
+                if(impactFactor > 3){
+                    impactFactor = 3;
                 }
             }
         }
-        result.push_back(factor);
+        result.push_back(impactFactor);
     }    
-    
-    // vector<int> result;
-    // map<char, int> dnaMap;
-    // const int n =P.size();
-
-    // dnaMap['A'] = 1;
-    // dnaMap['C'] = 2;
-    // dnaMap['G'] = 3;
-    // dnaMap['T'] = 4;
-
-    // for(int j = 0; j < n; j++)
-    //     result.push_back(dnaMap[*min_element(S.begin() + P[j],S.begin() + Q[j]+1)]);
-
     return result;
 }
 
 int main(){
-    string S = "CAGCCTA";
-    vector<int> P = {2,5,0};
-    vector<int> Q = {4,5,6};
-    vector<int> result = solution(S, P, Q);
-    for (int i = 0; i < result.size(); i++)
-        cout << result[i] << " ";
+    string DNAsequence = "CAGCCTA";
+    vector<int> queryStart = {2,5,0};
+    vector<int> queryEnd = {4,5,6};
+    vector<int> result = solution(DNAsequence, queryStart, queryEnd);
+    for (int index = 0; index < result.size(); index++)
+        cout << result[index] << " ";
     cout << endl;
 }

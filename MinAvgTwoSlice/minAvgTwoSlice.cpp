@@ -1,28 +1,30 @@
 // MinAvgTwoSlice
-// Correct 100 Performance 100
 
 #include <iostream>
 #include <vector>
 using namespace std;
 
-int solution(vector<int> &A){
-    int N = A.size();
-    int minIndex = 0;  
-    double minAvg = (A[0] + A[1]) / 2.0;  
+int solution(vector<int> &array){
+    int arraySize = array.size();
+    int minIndex = 0;
 
-    for (int i = 0; i < N - 1; i++) {
+    // Initialize minimum average with avg of first two elements  
+    double minAvg = (array[0] + array[1]) / 2.0;  
+    // Iterate over array
+    for (int index = 0; index < arraySize - 1; index++) {
 
-        double avg2 = (A[i] + A[i + 1]) / 2.0;
+        // Check slice of length 2
+        double avg2 = (array[index] + array[index + 1]) / 2.0;
         if (avg2 < minAvg) {
             minAvg = avg2;
-            minIndex = i;
+            minIndex = index;
         }
-
-        if (i < N - 2) {
-            double avg3 = (A[i] + A[i + 1] + A[i + 2]) / 3.0;
+        // Check slice of length 3
+        if (index < arraySize - 2) {
+            double avg3 = (array[index] + array[index + 1] + array[index + 2]) / 3.0;
             if (avg3 < minAvg) {
                 minAvg = avg3;
-                minIndex = i;
+                minIndex = index;
             }
         }
     }
@@ -32,6 +34,6 @@ int solution(vector<int> &A){
 
 
 int main(){
-    vector<int> A = {4, 2, 2, 5, 1, 5, 8};
-    cout << solution(A) << endl;
+    vector<int> array = {4, 2, 2, 5, 1, 5, 8};
+    cout << solution(array) << endl;
 }

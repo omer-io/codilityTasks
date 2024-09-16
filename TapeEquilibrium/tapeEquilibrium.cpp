@@ -1,45 +1,36 @@
 // Tape Equilibrium
-// Correctness 100 Performance 100
 
 #include <iostream>
 #include <vector>
 using namespace std;
 
-int solution(vector<int> &A){
-    int leftSum = A[0], rightSum = 0, n = A.size();
+int solution(vector<int> &array){
+    int leftSum = array[0]; // initialize sum of elements to the left with first element
+    int rightSum = 0;
+    int arraySize = array.size();
 
-    for (int i = 1; i < n; i++) {
-        rightSum += A[i];
+    // calculate initial sum of all elements to the right of the first element
+    for (int index = 1; index < arraySize; index++) {
+        rightSum += array[index];
     }
+
+    // initialize the minimum difference with the difference at first possible split point
     int minDiff = abs(rightSum - leftSum);
     int currDiff = 0;
-    for (int i = 1; i < A.size() - 1; i++) {
-        leftSum += A[i];
-        rightSum -= A[i];
+
+    // iterate through split points
+    for (int index = 1; index < array.size() - 1; index++) {
+        // update left sum to include current element
+        leftSum += array[index];
+        // update right sum to exclude current element
+        rightSum -= array[index];
+        // calculate difference 
         currDiff = abs(rightSum - leftSum);
         if (currDiff < minDiff) {
             minDiff = currDiff;
         }
     }
     return minDiff;
-    // int P, minDiff = 0, diff = 0;
-    // int n = A.size();
-    // for(P = 1; P < n; P++){
-    //     int lCount = P, rCount = P, leftSum = 0, rightSum = 0;
-    //     while(lCount != 0)
-    //         leftSum += A[--lCount];
-        
-    //     while(rCount != n)
-    //         rightSum += A[rCount++];
-        
-    //     if(P == 1)
-    //         minDiff = abs(leftSum - rightSum);
-        
-    //     diff = abs(leftSum - rightSum);
-    //     if(diff < minDiff)
-    //         minDiff = diff;
-    // }
-    // return minDiff;
 }
 
 int main(){

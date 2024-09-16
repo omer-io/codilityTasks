@@ -1,82 +1,56 @@
 // Flags
-// Correctness 100
+
 #include <iostream>
 #include <vector>
-#include <climits>
-#include <algorithm>
 using namespace std;
 
-int solution(vector<int> &A){
-    int n = A.size();
+int solution(vector<int> &array){
+    int arraySize = array.size();
     
-    if(A.size() < 3)
+    // if array size < 3, no peak exists
+    if(arraySize < 3)
         return 0;
 
     vector<int> peaks;
-    for(int i = 1; i < n-1; i++){
-        if(A[i] > A[i-1] && A[i] > A[i+1]){
-            peaks.push_back(i);
+    // find and store peaks
+    for(int currentPeak = 1; currentPeak < arraySize-1; currentPeak++){
+        if(array[currentPeak] > array[currentPeak-1] && array[currentPeak] > array[currentPeak+1]){
+            peaks.push_back(currentPeak);
         }
     }
 
     int numPeaks = peaks.size();
+    // return 0 if no peak exists
     if (numPeaks == 0) 
         return 0;
 
     int usedFlags;  
     int lastFlagPosition;
 
+    // start with max number of flags, reduce by one if all flags can't be placed
     for (int flags = numPeaks; flags >= 1; --flags) {
         usedFlags = 1;  // Place the first flag
         lastFlagPosition = peaks[0];
 
-        for (int i = 1; i < numPeaks; ++i) {
-            if (peaks[i] - lastFlagPosition >= flags) {
+        for (int currentPeak = 1; currentPeak < numPeaks; ++currentPeak) {
+            if (peaks[currentPeak] - lastFlagPosition >= flags) {
                 usedFlags++;
-                lastFlagPosition = peaks[i];  // Place flag here
+                lastFlagPosition = peaks[currentPeak];  // Place flag here
                 if (usedFlags == flags) {  
-                    return flags;
+                    return flags;       // if all flags placed return number of flags
                 }
 
             }
             // check if remaining flags > remaining peaks
-            if(flags - usedFlags > numPeaks - i - 1){
+            if(flags - usedFlags > numPeaks - currentPeak - 1){
                 break;
             }
         }
     }
     return 1;
-    // for (int flags = numPeaks; flags >= 1; --flags) {
-    //     usedFlags = 1;  // Place the first flag
-    //     lastFlagPosition = peaks[0];
-
-    //     for (int i = 1; i < numPeaks; ++i) {
-    //         if (peaks[i] - lastFlagPosition >= flags) {
-    //             usedFlags++;
-    //             lastFlagPosition = peaks[i];  // Place flag here
-    //             if (usedFlags == flags) {  
-    //                 return flags;
-    //             }
-
-    //         }
-    //     }
-    // }
-
-
-        // int flags = numPeaks;
-    // for(int j = 0; j < numPeaks - 1; j++){
-    //     for(int k = j + 1; k < numPeaks; k++){
-    //         if(abs(peaks[j] - peaks[k] <= flags)){
-    //             --flags;
-    //             continue;
-    //         }
-    //         j = k;
-    //     }
-    // }
-    // return flags;
 }
 
 int main(){
-    vector<int> A = {1,5,3,4,3,4,1,2,3,4,6,2};
-    cout << solution(A) << endl;
+    vector<int> array = {1,5,3,4,3,4,1,2,3,4,6,2};
+    cout << solution(array) << endl;
 }

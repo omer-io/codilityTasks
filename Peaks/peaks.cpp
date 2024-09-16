@@ -4,18 +4,24 @@
 #include <vector>
 using namespace std;
 
-int solution(vector<int> &A){
-        int n = A.size();
-    if (n < 3) return 0;
+int solution(vector<int> &inputArray){
+    int arraySize = inputArray.size();
+    
+    // if no peak exists
+    if (arraySize < 3){ 
+        return 0;
+    }
 
     vector<int> peaks;
-    for (int i = 1; i < n - 1; i++) {
-        if (A[i] > A[i - 1] && A[i] > A[i + 1]) {
-            peaks.push_back(i);
+    // find and store indices peaks
+    for (int index = 1; index < arraySize - 1; index++) {
+        if (inputArray[index] > inputArray[index - 1] && inputArray[index] > inputArray[index + 1]) {
+            peaks.push_back(index);
         }
     }
     
     int numPeaks = peaks.size();
+    // if no peak exists
     if (numPeaks == 0) 
         return 0;
 
@@ -23,16 +29,24 @@ int solution(vector<int> &A){
     int peakCount;
     int blockStart;
     int blockEnd;
+
+    // start outer loop with max number of blocks possible that is number of peaks
     for(int numOfBlocks = numPeaks; numOfBlocks >=1; numOfBlocks--){
-        if(n % numOfBlocks != 0){
+        // if array cannot be divided evenly into number of blocks, continue
+        if(arraySize % numOfBlocks != 0){
             continue;
         }
-            blockSize = n / numOfBlocks;
+            blockSize = arraySize / numOfBlocks;
             peakCount = 0;
+
             for(int currentBlock = 0; currentBlock < numOfBlocks; currentBlock++){
+                // Calculate start and end indices of current block
                 blockStart = blockSize * currentBlock;
                 blockEnd = blockSize * (currentBlock + 1);
+
+                // Check if there is a peak in current block
                 for(int peak = currentBlock; peak < numPeaks; peak++){
+                    // if there is a peak in current block, increment peakCount, break and check next block
                     if(peaks[peak] >= blockStart && peaks[peak] < blockEnd){
                         ++peakCount;
                         break;
@@ -40,65 +54,15 @@ int solution(vector<int> &A){
                 }
 
             }
+            // If all blocks contain at least one peak return number of blocks
             if(peakCount == numOfBlocks){
                 return numOfBlocks;
             }
     }
     return 1;
-    
-    // for(int numOfBlocks = numPeaks; numOfBlocks >=1; numOfBlocks--){
-    //     if(n % numOfBlocks == 0){
-    //         blockSize = n / numOfBlocks;
-    //         peakCount = 0;
-    //         for(int currentBlock = 0; currentBlock < numOfBlocks; currentBlock++){
-    //             for(int j = blockSize * currentBlock; j < blockSize * (currentBlock + 1); j++){
-    //                 for(int k = 0; k < numPeaks; k++){
-    //                     if(j == peaks[k]){
-    //                         ++peakCount;
-    //                         break;
-    //                     }
-    //                 }
-    //             }
-    //         }
-    //         if(peakCount == numOfBlocks){
-    //             return numOfBlocks;
-    //         }
-    //     }
-    // }
-
-
-    // int maxBlocks = 1;
-    // for(int i = 1; i < n; i++){
-    //     if(n % i == 0){
-    //         int numBlocks = n/i;
-    //         for(int j = 0; j < numBlocks; j++){
-
-    //         }
-    //     }
-    // }
-    // for (int K = numPeaks; K >= 1; K--) {
-    //     if (n % K == 0) { 
-    //         int blockSize = n / K;
-    //         int peakCount = 0;
-    //         int currentBlock = 0;
-
-    //         for (int peak : peaks) {
-    //             if (peak / blockSize > currentBlock) {
-    //                 currentBlock++;
-    //                 peakCount++;
-    //             }
-    //         }
-            
-
-    //         if (peakCount == K) {
-    //             return K; 
-    //         }
-    //     }
-    // }
-
 }
 
 int main(){
-    vector<int> A = {0,2,1,3,1,0,1,2,3,1};
-    cout << solution(A) << endl;
+    vector<int> inputArray = {0,2,1,3,1,0,1,2,3,1};
+    cout << solution(inputArray) << endl;
 }

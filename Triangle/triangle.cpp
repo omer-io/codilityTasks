@@ -1,37 +1,27 @@
 // Triangle
-// Correctness 100 Performance 100
 
 #include <iostream>
 #include <vector>
-#include <climits>
 #include <algorithm>
 using namespace std;
 
-int solution(vector<int> &A){
-    int n = A.size();
-    sort(A.begin(), A.end());
-    for(int P = 0; P < n-2; P++){
-        if(static_cast<long int>(A[P]) + static_cast<long int>(A[P+1]) > A[P+2]){
-            return 1;
+int solution(vector<int> &array){
+    int numOfElements = array.size();
+
+    // Sort array in ascending order
+    sort(array.begin(), array.end());
+
+    // Iterate through array to check for any valid triangle
+    for(int index = 0; index < numOfElements - 2; index++){
+        // Check if the current triplet is triangular
+        if(static_cast<long int>(array[index]) + static_cast<long int>(array[index+1]) > array[index+2]){
+            return 1; // A valid triangular found
         }
     }
     return 0;
-    // int n = A.size();
-    // for(int P = 0; P < n-2; P++){
-    //     for(int Q = P+1; Q < n-1; Q++){
-    //         for(int R = Q+1; R < n; R++){
-    //             if(static_cast<long int>(A[P]) + static_cast<long int>(A[Q]) > A[R] 
-    //             && static_cast<long int>(A[Q]) + static_cast<long int>(A[R]) > A[P] 
-    //             && static_cast<long int>(A[R]) + static_cast<long int>(A[P]) > A[Q]){
-    //                 return 1;
-    //             }
-    //         }
-    //     }
-    // }
-    // return 0;
 }
 
 int main(){
-    vector<int> arr = {INT_MAX, INT_MAX, INT_MAX};
-    cout << solution(arr) << endl;
+    vector<int> array = {10,5,8};
+    cout << solution(array) << endl;
 }
