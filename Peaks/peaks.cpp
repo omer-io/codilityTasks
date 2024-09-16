@@ -1,12 +1,11 @@
 // Peaks
-// 
 
 #include <iostream>
 #include <vector>
 using namespace std;
 
 int solution(vector<int> &A){
-    int n = A.size();
+        int n = A.size();
     if (n < 3) return 0;
 
     vector<int> peaks;
@@ -25,7 +24,9 @@ int solution(vector<int> &A){
     int blockStart;
     int blockEnd;
     for(int numOfBlocks = numPeaks; numOfBlocks >=1; numOfBlocks--){
-        if(n % numOfBlocks == 0){
+        if(n % numOfBlocks != 0){
+            continue;
+        }
             blockSize = n / numOfBlocks;
             peakCount = 0;
             for(int currentBlock = 0; currentBlock < numOfBlocks; currentBlock++){
@@ -38,21 +39,12 @@ int solution(vector<int> &A){
                     }
                 }
 
-                // for(int j = blockSize * currentBlock; j < blockSize * (currentBlock + 1); j++){
-                //     for(int k = 0; k < numPeaks; k++){
-                //         if(j == peaks[k]){
-                //             ++peakCount;
-                //             break;
-                //         }
-                //     }
-                // }
             }
             if(peakCount == numOfBlocks){
                 return numOfBlocks;
             }
-        }
     }
-
+    return 1;
     
     // for(int numOfBlocks = numPeaks; numOfBlocks >=1; numOfBlocks--){
     //     if(n % numOfBlocks == 0){
@@ -103,8 +95,7 @@ int solution(vector<int> &A){
     //         }
     //     }
     // }
-    
-    return 1; 
+
 }
 
 int main(){

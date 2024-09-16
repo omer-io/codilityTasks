@@ -9,47 +9,40 @@ vector<int> solution(string &S, vector<int> &P, vector<int> &Q){
     vector<int> result;
 
     int n = S.size();
-    vector<bool> A(n, false);
-    vector<bool> C(n, false);
-    vector<bool> G(n, false);
-    vector<bool> T(n, false);
+    vector<int> A(n, 0);
+    vector<int> C(n, 0);
+    vector<int> G(n, 0);
     
- 
     const int p =P.size();
 
     for(int j = 0; j < n; j++){
         if(S[j] == 'A')
-            A[j] = true;
+            A[j] = 1;
         else if(S[j] == 'C')
-            C[j] = true;
+            C[j] = 2;
         else if(S[j] == 'G')
-            G[j] = true;
-        else if(S[j] == 'T')
-            T[j] = true;
+            G[j] = 3;
     }
 
     int factor;
     for(int i = 0; i < p; i++){
         factor = 4;
         for(int k = P[i]; k <= Q[i]; k++){
-            if(A[k]){
+            if(A[k] == 1){
                 if(factor > 1){
                     factor = 1;
                 }
-                // factor = min(factor, 1);
                 break;
             }
-            else if(C[k]){
+            else if(C[k] == 2){
                 if(factor > 2){
                     factor = 2;
                 }
-                // factor = min(factor, 2);
             }
-            else if(G[k]){
+            else if(G[k] == 3){
                 if(factor > 3){
                     factor = 3;
                 }
-                // factor = min(factor, 3);
             }
         }
         result.push_back(factor);

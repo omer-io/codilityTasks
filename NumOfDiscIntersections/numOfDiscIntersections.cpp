@@ -1,16 +1,14 @@
 // NumberOfDiscIntersections
-// Correctness 100 Performance 
 
 #include <iostream>
 #include <vector>
-#include <algorithm>
 using namespace std;
 
 int solution(vector<int> &A){
     int n = A.size(), discIntersect = 0;
     for(int i = 0; i < n-1; i++){
         for(int j = i+1; j < n; j++){
-            if(static_cast<long int>(A[i]) + static_cast<long int>(A[j]) >= abs(i - j)){
+            if(static_cast<long int>(A[i]) + static_cast<long int>(A[j]) >= j - i){
                 discIntersect+=1;
             }
         }

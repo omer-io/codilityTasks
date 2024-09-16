@@ -9,13 +9,13 @@ vector<int> solution(string &S, vector<int> &P, vector<int> &Q){
     vector<int> result;
 
     int n = S.size();
-    vector<int> A(n, 5);
-    vector<int> C(n, 5);
-    vector<int> G(n, 5);
-    vector<int> T(n, 5);
+    vector<int> A(n, 0);
+    vector<int> C(n, 0);
+    vector<int> G(n, 0);
+    vector<int> T(n, 0);
     
  
-    const int p =P.size();
+    int p =P.size();
 
     for(int j = 0; j < n; j++){
         if(S[j] == 'A')
@@ -28,31 +28,31 @@ vector<int> solution(string &S, vector<int> &P, vector<int> &Q){
             T[j] = 4;
     }
 
-
-    vector<int> a = A, c = C, g = G, t = T; 
-
-        sort(a.begin(), a.end());
-
-        sort(c.begin(), c.end());
-
-        sort(g.begin(), g.end());
-
-        sort(t.begin(), t.end());
-// for(bool x : c){
-//     cout << x << " ";
-// }
-cout << endl;
-
+    int factor;
+    vector<bool> a, c, g, t; 
     for(int i = 0; i < p; i++){
- 
+        factor = 4;
+        // a = vector<bool>(A.begin() + P[i], A.begin() + Q[i] + 1);
+        // sort(a.begin(), a.end());
 
-        if(a[n - 1 - P[i]]){
+        // c = vector<bool>(C.begin() + P[i], C.begin() + Q[i] + 1);
+        // sort(c.begin(), c.end());
+
+        // g = vector<bool>(G.begin() + P[i], G.begin() + Q[i] + 1);
+        // sort(g.begin(), g.end());
+
+        // t = vector<bool>(T.begin() + P[i], T.begin() + Q[i] + 1);
+        // sort(t.begin(), t.end());
+        string subString = S.substr(P[i], Q[i] - P[i] + 1);
+        sort(subString.begin(), subString.end());
+
+        if(subString[0] == 'A'){
             result.push_back(1);
         }
-        else if(c[n - 1 - P[i]]){
+        else if(subString[0] == 'C'){
             result.push_back(2);
         }
-        else if(g[n - 1 - P[i]]){
+        else if(subString[0] == 'G'){
             result.push_back(3);
         }
         else{
@@ -73,9 +73,9 @@ cout << endl;
 }
 
 int main(){
-    string S = "AC";
-    vector<int> P = {1};
-    vector<int> Q = {1};
+    string S = "CAGCCTA";
+    vector<int> P = {2,5,0};
+    vector<int> Q = {4,5,6};
     vector<int> result = solution(S, P, Q);
     for (int i = 0; i < result.size(); i++)
         cout << result[i] << " ";

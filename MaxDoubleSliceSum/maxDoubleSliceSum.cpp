@@ -34,15 +34,7 @@ int solution(vector<int> &A){
     // int currMaxRight=0;
     // int currMaxLeft=0;
     // for(int i = 0; i < n-2; i++){
-    //     for(int j = i + 1; j < n-1; j++){
-    //         currMaxRight = max(A[j], currMaxRight + A[j]);
-    //         // maxSum = max(maxSum, currMax);
-    //         for(int k = j + 1; j < n; j++){
-    //             currMaxLeft = max(A[k], currMaxLeft + A[k]);
-    //             // maxSum = max(maxSum, currMax);
-    //         }
-    //     }
-    //     currMax = currMaxRight + currMaxLeft;
+    //     currMax = max(A[i], currMax + A[i]);
     //     maxSum = max(maxSum, currMax);
     // }
     // return maxSum;

@@ -14,22 +14,35 @@ vector<int> solution(vector<int> &A){
     vector<int> temp = A;
     sort(temp.begin(), temp.end());
 
-    unordered_map<int, int> indextoVal;
-    for(int i = 0; i < n; i++) {
-        indextoVal[temp[i]] = i;
-    }
+    unordered_map<int, int> nonDivisors;
 
     int count;
+    int elem;
     for(int i = 0; i < n; i++){
-        count = 0;
-        for(int j = 0; j < indextoVal[A[i]]; j++){
-            if(A[i] % temp[j] != 0){
+        count = n - i - 1;
+        elem = temp[i];
+        for(int j = i-1; j >= 0; j--){
+            if(elem % temp[j] != 0){
                 ++count;
             }
         }
-        count += (n -1 - indextoVal[A[i]]); 
-        result.push_back(count);
+        nonDivisors[elem] = count;
     }
+    for(int i = 0; i < n; i++){
+        result.push_back(nonDivisors[A[i]]);
+    }
+
+    // int count;
+    // for(int i = 0; i < n; i++){
+    //     count = 0;
+    //     for(int j = 0; j < indextoVal[A[i]]; j++){
+    //         if(A[i] % temp[j] != 0){
+    //             ++count;
+    //         }
+    //     }
+    //     count += (n -1 - indextoVal[A[i]]); 
+    //     result.push_back(count);
+    // }
 
 
     // int count;
@@ -44,20 +57,7 @@ vector<int> solution(vector<int> &A){
     //     result.push_back(count);
     // }
 
-    // int count;
-    // for(int i = 0; i < n; i++){
-    //     count = 0;
-    //     for(int j = i-1; j >= 0; j--){
-    //         if(temp[i] == temp[j]){
-    //             continue;
-    //         }
-    //         if(temp[i] % temp[j] != 0){
-    //             ++count;
-    //         }
-    //     }
-    //     count += (n - i - 1); 
-    //     result.push_back(count);
-    // }
+
 
 
     // int count;
