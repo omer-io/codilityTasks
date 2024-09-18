@@ -10,21 +10,21 @@
 ---------------
 
 This project contains solutions for following codility tasks:
-Lesson 3: Tape Equilibrium
-Lesson 4: MaxCounters
-Lesson 5: GenomicRangeQuery
-Lesson 5: MinAvgTwoSlice
-Lesson 6: Triangle
-Lesson 6: NumberofDiscIntersections
-Lesson 7: Nesting
-Lesson 7: StoneWall
-Lesson 8: Dominator
-Lesson 8: EquiLeader
-Lesson 9: MaxSliceSum
-Lesson 9: MaxDoubleSliceSum
-Lesson 10: Flags 
-Lesson 10: Peaks
-Lesson 11: CountNonDivisible 
+1. Tape Equilibrium
+2. MaxCounters
+3. GenomicRangeQuery
+4. MinAvgTwoSlice
+5. Triangle
+6. NumberofDiscIntersections
+7. Nesting
+8. StoneWall
+9. Dominator
+10. EquiLeader
+11. MaxSliceSum
+12. MaxDoubleSliceSum
+13. Flags 
+14. Peaks
+15. CountNonDivisible 
 
 ## Building and Running
 ---------------------
