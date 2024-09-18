@@ -7,14 +7,16 @@
 using namespace std;
 
 int solution(vector<int> &array){
-    if(array.empty())
+    if(array.empty()){
         return -1;
+    }
 
     int arraySize = array.size();
     map<int, int> indexToVal;
     // map values to respective index
-    for(int a = 0; a < arraySize; a++)
+    for(int a = 0; a < arraySize; a++){
         indexToVal[array[a]] = a;
+    }
 
     sort(array.begin(), array.end());
     // if domniator exists, it must be in middle
@@ -22,9 +24,11 @@ int solution(vector<int> &array){
 
     int count = 0;
     for(int index = 0; index < arraySize; index++){
-        if(array[index] == dominator)
-            if(++count > arraySize/2)
+        if(array[index] == dominator){
+            if(++count > arraySize/2){
                 return indexToVal[array[index]];
+            }
+        }
     }
     return -1;
 }

@@ -7,7 +7,8 @@ using namespace std;
 vector<int> solution(int totalCounters, vector<int> &array){
     // initialize counters array with 0s
     vector<int> counters(totalCounters, 0);
-    int max = 0, min = 0;
+    int max = 0; 
+    int min = 0;
 
     size_t arraySize = array.size();
     for (size_t counterIndex = 0; counterIndex < arraySize; ++counterIndex)
