@@ -6,19 +6,24 @@ using namespace std;
 
 int solution(vector<int> &array){
 
-    int arraySize = array.size();
+    size_t arraySize = array.size();
+    
+    if (arraySize < 3){ 
+        return 0;
+    }
+
     int maxSum = 0;
     int sum;
 
     // outer loop for starting index of slice
-    for(int startIndex = 0; startIndex < arraySize - 2; startIndex++){
+    for(size_t startIndex = 0; startIndex < arraySize - 2; startIndex++){
         // middle loop for middle index of slice
-        for(int midIndex = startIndex + 1; midIndex < arraySize - 1; midIndex++){
+        for(size_t midIndex = startIndex + 1; midIndex < arraySize - 1; midIndex++){
             // loop for ending index of slice
-            for(int endIndex = midIndex + 1; endIndex < arraySize; endIndex++){
+            for(size_t endIndex = midIndex + 1; endIndex < arraySize; endIndex++){
                 sum = 0;
                 // loop to calculate sum of slice
-                for(int sliceIndex = startIndex + 1; sliceIndex < endIndex; sliceIndex++){
+                for(size_t sliceIndex = startIndex + 1; sliceIndex < endIndex; sliceIndex++){
                     sum += array[sliceIndex];
                 }
                 // subtract value at mid index

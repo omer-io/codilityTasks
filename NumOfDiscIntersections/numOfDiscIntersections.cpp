@@ -5,13 +5,17 @@
 using namespace std;
 
 int solution(vector<int> &inputArray){
-    int n = inputArray.size();
+    size_t arraySize = inputArray.size();
+
+    if(arraySize < 1){
+        return 0;
+    }
     int discIntersect = 0;
 
     // Outer loop to iterate over each disc
-    for(int currentDisc = 0; currentDisc < n-1; currentDisc++){
+    for(size_t currentDisc = 0; currentDisc < arraySize-1; currentDisc++){
         // Inner loop to check intersections with next discs
-        for(int nextDisc = currentDisc+1; nextDisc < n; nextDisc++){
+        for(size_t nextDisc = currentDisc+1; nextDisc < arraySize; nextDisc++){
             // if sum of their radius is > distance between their centres
             if(static_cast<long int>(inputArray[currentDisc]) + static_cast<long int>(inputArray[nextDisc]) >= nextDisc - currentDisc){
                 discIntersect += 1;

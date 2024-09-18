@@ -5,13 +5,17 @@
 using namespace std;
 
 int solution(vector<int> &array){
-    int arraySize = array.size();
+    size_t arraySize = array.size();
     int minIndex = 0;
+
+    if (arraySize < 2){ 
+        return 0;
+    }  
 
     // Initialize minimum average with avg of first two elements  
     double minAvg = (array[0] + array[1]) / 2.0;  
     // Iterate over array
-    for (int index = 0; index < arraySize - 1; index++) {
+    for (size_t index = 0; index < arraySize - 1; index++) {
 
         // Check slice of length 2
         double avg2 = (array[index] + array[index + 1]) / 2.0;

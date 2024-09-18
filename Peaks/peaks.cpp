@@ -5,7 +5,7 @@
 using namespace std;
 
 int solution(vector<int> &inputArray){
-    int arraySize = inputArray.size();
+    size_t arraySize = inputArray.size();
     
     // if no peak exists
     if (arraySize < 3){ 
@@ -14,7 +14,7 @@ int solution(vector<int> &inputArray){
 
     vector<int> peaks;
     // find and store indices peaks
-    for (int index = 1; index < arraySize - 1; index++) {
+    for (size_t index = 1; index < arraySize - 1; index++) {
         if (inputArray[index] > inputArray[index - 1] && inputArray[index] > inputArray[index + 1]) {
             peaks.push_back(index);
         }

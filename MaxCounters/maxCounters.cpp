@@ -9,8 +9,8 @@ vector<int> solution(int totalCounters, vector<int> &array){
     vector<int> counters(totalCounters, 0);
     int max = 0, min = 0;
 
-    int arraySize = array.size();
-    for (int counterIndex = 0; counterIndex < arraySize; ++counterIndex)
+    size_t arraySize = array.size();
+    for (size_t counterIndex = 0; counterIndex < arraySize; ++counterIndex)
     {
         if (array[counterIndex] <= totalCounters)
         {
