@@ -36,6 +36,6 @@ To build and run the project, follow these steps:
 3. Navigate to the build directory: `cd build`
 4. Run CMake: `cmake ..`
 5. Build the project: `make`
-6. Run tasks: `./<TaskName>/<taskName`
+6. Run tasks: `./<TaskName>/<taskName>`
 
 
